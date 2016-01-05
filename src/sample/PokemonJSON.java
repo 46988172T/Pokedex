@@ -51,6 +51,7 @@ public class PokemonJSON {
 
         String getPokemonApi = urlBase+"/api/v1/pokemon/" + idPokemon;
         try {
+            //Extraure Pokemons
             Pokemons = getHTML(getPokemonApi);
             Object object = JSONValue.parse(Pokemons);
             JSONObject objectJSimple = (JSONObject) object;
@@ -58,8 +59,25 @@ public class PokemonJSON {
             String idPokemonStr = String.valueOf(idPokemon);
             String namePokemon = (String) objectJSimple.get("name");
 
-            JSONArray arrayJsonMoves = (JSONArray) objectJSimple.get("moves");
+            //Guarda en DB el Pokemon.
+            DAOPokemonDB.insertPokemon(idPokemonStr,namePokemon);
 
+            //Extraure Types.
+            JSONArray jsonArrayTypes = (JSONArray) objectJSimple.get("types");
+            String type;
+            String idType;
+            for (int j = 0; j < jsonArrayTypes.size(); j++) {
+                JSONObject jsonObject2= (JSONObject) jsonArrayTypes.get(j);
+                idType = ((String) jsonObject2.get("resource_uri"));
+                type = ((String) jsonObject2.get("name"));
+
+                //Guarda a la DB els Types i la relació Pokemon-Types
+                DAOPokemonDB.insertTypes(idType, type);
+                DAOPokemonDB.insertPokemonTypes(idPokemonStr, idType);
+            }
+
+            //Extraure Moves.
+            JSONArray arrayJsonMoves = (JSONArray) objectJSimple.get("moves");
             for(int k=0; k<arrayJsonMoves.size();k++){
 
                 JSONObject jom = (JSONObject)arrayJsonMoves.get(k);
@@ -71,17 +89,11 @@ public class PokemonJSON {
                 Object objmov = JSONValue.parse(Moves);
                 JSONObject objSimpleMov = (JSONObject) objmov;
                 String description = (String)objSimpleMov.get("description");
-            }
 
-            JSONArray jsonArrayTypes = (JSONArray) objectJSimple.get("types");
-            String type;
-            String idType;
-            for (int j = 0; j < jsonArrayTypes.size(); j++) {
-                JSONObject jsonObject2= (JSONObject) jsonArrayTypes.get(j);
-                idType = ((String) jsonObject2.get("resource_uri"));
-                type = ((String) jsonObject2.get("name"));
+                //Guarda a la DB els Moves i la relació Pokemon-Moves
+                DAOPokemonDB.insertMoves(idMoves, description, nameMoves);
+                DAOPokemonDB.insertPokemonMoves(idPokemonStr,idMoves);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

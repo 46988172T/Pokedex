@@ -102,10 +102,10 @@ public class DAOPokemonDB {
 
     /**
      * Aprofitem de M06 els mètodes ja creats per insertar info a la DB, els types.
-     * @param id_pokemon
+     * @param id_types
      * @param name
      */
-    public static void insertTypes(String id_pokemon, String name) {
+    public static void insertTypes(String id_types, String name) {
 
         Connection c = null;
         Statement stmt = null;
@@ -119,7 +119,7 @@ public class DAOPokemonDB {
                     " (ID, NAME) VALUES (?, ?);";
 
             PreparedStatement preparedStatement = c.prepareStatement(sql_insert);
-            preparedStatement.setString(1, id_pokemon);
+            preparedStatement.setString(1, id_types);
             preparedStatement.setString(2, name);
 
             preparedStatement.executeUpdate();
@@ -133,11 +133,11 @@ public class DAOPokemonDB {
 
     /**
      * Aprofitem de M06 els mètodes ja creats per insertar info a la DB, els moves.
-     * @param id
+     * @param id_moves
      * @param description
      * @param name
      */
-    public static void insertMoves(String id, String description, String name) {
+    public static void insertMoves(String id_moves, String description, String name) {
 
         Connection c = null;
         Statement stmt = null;
@@ -151,7 +151,7 @@ public class DAOPokemonDB {
                     " (ID, DESCRIPTION, NAME) VALUES(?, ?,?);";
 
             PreparedStatement preparedStatement = c.prepareStatement(sql_insert);
-            preparedStatement.setString(1, id);
+            preparedStatement.setString(1, id_moves);
             preparedStatement.setString(2, description);
             preparedStatement.setString(3, name);
 
@@ -169,7 +169,7 @@ public class DAOPokemonDB {
      * @param id_pokemon
      * @param id_type
      */
-    public static void insertpoke_tipo(String id_pokemon, String id_type) {
+    public static void insertPokemonTypes(String id_pokemon, String id_type) {
 
         Connection c = null;
         Statement stmt = null;
@@ -200,7 +200,7 @@ public class DAOPokemonDB {
      * @param id_pokemon
      * @param id_moves
      */
-    public static void insert_poke_mov(String id_pokemon,String id_moves){
+    public static void insertPokemonMoves(String id_pokemon,String id_moves){
 
         Connection c = null;
         Statement stmt = null;
