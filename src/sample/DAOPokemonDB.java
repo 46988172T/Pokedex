@@ -34,7 +34,7 @@ public class DAOPokemonDB {
                     "CREATE TABLE POKEMON_TYPES " +
                             "(ID_POKEMON    TEXT    NOT NULL," +
                             " ID_TYPE       TEXT    NOT NULL," +
-                            " PRIMARY KEY(ID_POK,ID_TIPO))";
+                            " PRIMARY KEY(ID_POKEMON,ID_TYPE))";
 
             stmt.executeUpdate(create_table_pokemon_types);
 
@@ -49,7 +49,7 @@ public class DAOPokemonDB {
                     "CREATE TABLE POKEMON_MOVES " +
                             "(ID_POKEMON    TEXT    NOT NULL," +
                             " ID_MOVES   TEXT    NOT NULL," +
-                            " PRIMARY KEY(ID_MOVE,ID_POK))";
+                            " PRIMARY KEY(ID_MOVES,ID_POKEMON))";
 
             stmt.executeUpdate(create_table_pokemon_moves);
 

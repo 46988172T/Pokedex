@@ -16,15 +16,16 @@ Crear una aplicació d'escriptori que mostri informació sobre diferents Pokémo
 Com sempre heu de cuidar al màxim els aspectes relacionats amb la usabilitat. Fixeu-vos també en la redimensió de la finestra de l'aplicació.
  */
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class Controller {
     @FXML
@@ -36,13 +37,39 @@ public class Controller {
     @FXML
     ImageView pokemonImageView;
     @FXML
-    Label nameText;
+    Text nameText;
     @FXML
     TextArea descriptionTextArea;
     @FXML
     AnchorPane anchorPane;
+    @FXML
+    Button catchPokemonButton;
+    @FXML
+    TextField idTextField;
 
     Image image;
 
     ObservableList<String> items = FXCollections.observableArrayList();
+
+    public void initialize(){
+        DAOPokemonDB.createPokemonDb();
+    }
+
+    /**
+     * Mètode que agafa la id introduida i l'envia al mètode que busca la id a la API i descarrega les dades.
+     * @param actionEvent
+     * @throws Exception
+     */
+    public void catchPokemon(ActionEvent actionEvent) throws Exception {
+        int idCatched = Integer.parseInt(idTextField.getText());
+        PokemonJSON.getPokemonFromJson(idCatched);
+    }
+
+    /**
+     * Tanca programa.
+     * @param actionEvent
+     */
+    public void close(ActionEvent actionEvent) {
+        Platform.exit();
+    }
 }

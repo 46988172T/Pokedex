@@ -43,7 +43,7 @@ public class PokemonJSON {
 
     /**
      * L'usuari tria la ID del Pokemon a l'aplicació, que es passa per aquest mètode, i es fa la crida a la API
-     * extraien tota la informació del Pokemon.
+     * extraient tota la informació del Pokemon i guardant-la a la DB.
      * @param idPokemon
      * @throws Exception
      */

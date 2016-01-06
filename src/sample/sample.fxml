@@ -9,16 +9,20 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <ImageView fx:id="pokemonImageView" fitHeight="225.0" fitWidth="232.0" layoutX="247.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="540.0" layoutY="276.0" text="TYPE" />
       <Label layoutX="540.0" layoutY="346.0" text="MOVES" />
-      <TextArea fx:id="descriptionTextArea" layoutX="540.0" layoutY="50.0" prefHeight="215.0" prefWidth="197.0" text="aqui va la descripcion" />
+      <TextArea fx:id="descriptionTextArea" layoutX="540.0" layoutY="50.0" prefHeight="215.0" prefWidth="197.0" promptText="Description" />
       <ListView fx:id="pokemonListView" layoutX="20.0" layoutY="115.0" prefHeight="287.0" prefWidth="200.0" />
       <Text fx:id="nameText" layoutX="272.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="181.7294921875" />
-      <Text layoutX="58.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pokemons Catched" textAlignment="CENTER" />
+      <Text layoutX="74.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pokemon List" textAlignment="CENTER" />
       <ListView fx:id="typeListView" layoutX="590.0" layoutY="276.0" prefHeight="65.0" prefWidth="147.0" />
       <ListView fx:id="movesListView" layoutX="590.0" layoutY="346.0" prefHeight="65.0" prefWidth="147.0" />
+      <Text layoutX="58.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catch a Pokemon!" />
+      <TextField fx:id="idTextField" layoutX="60.0" layoutY="50.0" prefHeight="26.0" prefWidth="47.0" promptText="0" />
+      <Text layoutX="20.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+      <Button fx:id="catchPokemonButton" layoutX="129.0" layoutY="50.0" mnemonicParsing="false" onAction="#catchPokemon" text="Catch!" />
    </children>
 </AnchorPane>
