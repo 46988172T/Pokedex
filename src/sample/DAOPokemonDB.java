@@ -1,5 +1,9 @@
 package sample;
 
+import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
+
+import java.io.File;
 import java.sql.*;
 
 /**
@@ -25,8 +29,8 @@ public class DAOPokemonDB {
 
             String create_table_pokemon =
                     "CREATE TABLE POKEMONS " +
-                            "(ID    TEXT PRIMARY KEY     NOT NULL," +
-                            " NAME  TEXT                 NOT NULL)";
+                            "(ID        TEXT PRIMARY KEY     NOT NULL," +
+                            " NAME      TEXT                 NOT NULL)";
 
             stmt.executeUpdate(create_table_pokemon);
 
@@ -96,7 +100,7 @@ public class DAOPokemonDB {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.print("Ok");
+
         }
     }
 
@@ -127,7 +131,7 @@ public class DAOPokemonDB {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.print("Ok");
+
         }
     }
 
@@ -160,7 +164,7 @@ public class DAOPokemonDB {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.print("Ok");
+
         }
     }
 
@@ -191,7 +195,7 @@ public class DAOPokemonDB {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.print("Ok");
+
         }
     }
 
@@ -224,6 +228,153 @@ public class DAOPokemonDB {
         } catch (SQLException e) {
             System.out.print("");
         }
+    }
+
+
+
+
+    /**
+     * Extrau la llista de Pokemons des de la DB i la envia al listview.
+     * @param list
+     */
+    public static void listPokemon(ObservableList list, Text text, int id){
+
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:pokemon.db");
+            c.setAutoCommit(false);
+
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM POKEMONS;");
+
+            while (rs.next()) {
+                String pokemonName = rs.getString("NAME");
+                list.add(pokemonName);
+                text.setText(pokemonName);
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+
+    /**
+     * Mostra els Tipus del Pokemon triat per ID al ListView de Types.
+     * @param list
+     * @param id
+     */
+    public static void listType(ObservableList list,int id){
+
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:pokemon.db");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM  TYPES " +
+                    "INNER JOIN POKEMON_TYPES ON TYPES.ID = POKEMON_TYPES.ID_TYPE" +
+                    " WHERE POKEMON_TYPES.ID_POKEMON = '"+id+"'" );
+            while ( rs.next() ) {
+                String typeName = rs.getString("NAME");
+                list.add(typeName);
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+
+    /**
+     * Mostra els Moviments del Pokemon triat per ID al ListView de Moves.
+     * @param list
+     * @param id
+     */
+    public static void listMoves(ObservableList list, int id){
+
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:pokemon.db");
+            c.setAutoCommit(false);
+
+            stmt = c.createStatement();
+
+            ResultSet rs = stmt.executeQuery( "SELECT MOVES.NAME FROM MOVES\n" +
+                    "INNER JOIN POKEMON_MOVES " +
+                    "ON MOVES.ID = POKEMON_MOVES.ID_MOVES " +
+                    "WHERE POKEMON_MOVES.ID_POKEMON = '"+id+"'"
+            );
+            while (rs.next()) {
+                String movesName = rs.getString("NAME");
+                list.add(movesName);
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+
+    public static String[] infoMoves(String move){
+        String moveName = "";
+        String moveDescription = "";
+
+        String arrayMoves[]= new String [2];
+
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:pokemon.db");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM MOVES " +
+                    "WHERE NAME = '"+move+"'");
+            while (rs.next()) {
+                moveName = rs.getString("NAME");
+                moveDescription=rs.getString("DESCRIPTION");
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+
+        arrayMoves[0]=moveName;
+        arrayMoves[1]=moveDescription;
+
+        return arrayMoves;
+    }
+
+    /**
+     * Esborra la base de dades.
+     */
+    public static void deletePokemonDb(){
+        File dbPokemon = new File("pokemon.db");
+        dbPokemon.delete();
     }
 
 }
