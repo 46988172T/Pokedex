@@ -46,6 +46,16 @@ public class Controller {
     @FXML
     Text nameText;
     @FXML
+    Text idText;
+    @FXML
+    Text catchText;
+    @FXML
+    Text pokemonListText;
+    @FXML
+    Text typeText;
+    @FXML
+    Text movesText;
+    @FXML
     TextArea descriptionTextArea;
     @FXML
     AnchorPane anchorPane;
@@ -64,6 +74,13 @@ public class Controller {
     public void initialize(){
         DAOPokemonDB.deletePokemonDb();
         DAOPokemonDB.createPokemonDb();
+        anchorPane.getStyleClass().add("pane");
+        nameText.setId("fancytext");
+        pokemonListText.setId("fancytext2");
+        catchText.setId("fancytext3");
+        idText.setId("fancytext2");
+        movesText.setId("fancytext3");
+        typeText.setId("fancytext3");
     }
 
     /**
@@ -183,7 +200,7 @@ public class Controller {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("How to...");
         alert.setHeaderText("Catch a Pokemon!");
-        alert.setContentText("Just fill the the text field with the ID from the Pokemon you want to catch, and you'll see the name, image, type of Pokemon and the movements!");
+        alert.setContentText("Just fill the text field with the Pokemon's ID!");
         alert.showAndWait();
     }
 

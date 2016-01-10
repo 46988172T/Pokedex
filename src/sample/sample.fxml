@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
@@ -9,23 +10,21 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="751.0" stylesheets="@Pokedex.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <ImageView fx:id="pokemonImageView" fitHeight="225.0" fitWidth="232.0" layoutX="247.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="540.0" layoutY="276.0" text="TYPE" />
-      <Label layoutX="540.0" layoutY="346.0" text="MOVES" />
-      <TextArea fx:id="descriptionTextArea" editable="false" layoutX="540.0" layoutY="50.0" prefHeight="215.0" prefWidth="197.0" promptText="Description" stylesheets="@DarkTheme.css" wrapText="true">
+      <ImageView fx:id="pokemonImageView" fitHeight="225.0" fitWidth="232.0" layoutX="260.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+      <TextArea fx:id="descriptionTextArea" editable="false" layoutX="540.0" layoutY="50.0" prefHeight="215.0" prefWidth="197.0" promptText="Description" stylesheets="@Pokedex.css" wrapText="true">
          <cursor>
             <Cursor fx:constant="NONE" />
          </cursor></TextArea>
       <ListView fx:id="pokemonListView" layoutX="18.0" layoutY="155.0" onMouseClicked="#onClickPokemonList" prefHeight="287.0" prefWidth="200.0" />
-      <Text fx:id="nameText" layoutX="272.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="181.7294921875" />
-      <Text layoutX="74.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pokemon List" textAlignment="CENTER" />
+      <Text fx:id="nameText" layoutX="260.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="240.7294921875" />
+      <Text fx:id="pokemonListText" layoutX="33.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pokemon List" textAlignment="CENTER" />
       <ListView fx:id="typeListView" layoutX="590.0" layoutY="276.0" prefHeight="65.0" prefWidth="147.0" />
       <ListView fx:id="movesListView" layoutX="590.0" layoutY="346.0" onMouseClicked="#onClickMovesList" prefHeight="65.0" prefWidth="147.0" />
-      <Text layoutX="58.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catch a Pokemon!" />
-      <TextField fx:id="idTextField" layoutX="60.0" layoutY="84.0" prefHeight="26.0" prefWidth="47.0" promptText="0" />
-      <Text layoutX="24.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+      <Text fx:id="catchText" layoutX="24.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catch a Pokemon!" />
+      <TextField fx:id="idTextField" layoutX="60.0" layoutY="84.0" prefHeight="26.0" prefWidth="61.0" promptText="0" />
+      <Text fx:id="idText" layoutX="24.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
       <Button fx:id="catchPokemonButton" layoutX="131.0" layoutY="84.0" mnemonicParsing="false" onAction="#catchPokemon" text="Catch!" />
       <MenuBar prefHeight="29.0" prefWidth="751.0">
         <menus>
@@ -46,5 +45,7 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Text fx:id="typeText" layoutX="546.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TYPE:" textAlignment="RIGHT" />
+      <Text fx:id="movesText" layoutX="532.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MOVES:" textAlignment="RIGHT" />
    </children>
 </AnchorPane>

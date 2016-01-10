@@ -1,0 +1,103 @@
+.root{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Courier New";
+    -fx-base: rgb(211, 238, 160);
+    -fx-background: rgb(9, 27, 1);
+}
+
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: green;
+    -fx-opacity: 0.6;
+}
+
+#fancytext {
+    -fx-font: 35px Tahoma;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, #217703 0%, #ceee05 50%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#fancytext2 {
+    -fx-font: 25px Tahoma;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, #217703 0%, #ceee05 50%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+#fancytext3 {
+    -fx-font: 20px Tahoma;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, #217703 0%, #ceee05 50%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #217703;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #58aa00;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #96ee0c;
+    -fx-text-fill: #d8d8d8;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: #58aa00;
+    -fx-text-fill: #fffefa;
+}
+
+.button:focused {
+    -fx-border-color: #217703, #58aa00;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color,30%);
+}
+
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #217703;
+}
+
+.text-area{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    /* 3:, 4: */
+    -fx-background-color: linear-gradient(#333 0%, #217703 25%, #58aa00 75%, #96ee0c 100%);
+    -fx-text-fill: #fffefa; /* 5 */
+}
+.list-cell { -fx-text-fill: black; /* 5 */ }
+.list-cell:odd { -fx-background-color: #217703; /* 1 */ }
+.list-cell:even { -fx-background-color: white; /* for information */ }
+.list-cell:filled:hover {
+    -fx-background-color: #F2F2F2; /* 2 */
+    -fx-text-fill: green; /* 5 */
+}
